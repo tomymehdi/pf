@@ -256,5 +256,6 @@ public class BasicDemo extends DemoApplication {
 
 		LWJGL.main(args, 800, 600, "Bullet Physics Demo", ccdDemo);
 	}
+
 	
 }
