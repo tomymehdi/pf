@@ -21,15 +21,12 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-package ar.com.edu.it.itba.PF3;
-
-import java.io.File;
+package ar.com.edu.it.itba.PF3.basic;
 
 import com.bulletphysics.util.ObjectArrayList;
 import com.bulletphysics.collision.broadphase.BroadphaseInterface;
 import com.bulletphysics.collision.broadphase.DbvtBroadphase;
 import com.bulletphysics.collision.dispatch.CollisionDispatcher;
-import com.bulletphysics.collision.dispatch.CollisionObject;
 import com.bulletphysics.collision.dispatch.DefaultCollisionConfiguration;
 import com.bulletphysics.collision.shapes.BoxShape;
 import com.bulletphysics.collision.shapes.CollisionShape;
@@ -44,12 +41,8 @@ import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
 import com.bulletphysics.dynamics.constraintsolver.SequentialImpulseConstraintSolver;
 import com.bulletphysics.linearmath.DefaultMotionState;
 import com.bulletphysics.linearmath.Transform;
-
 import javax.vecmath.Vector3f;
-
 import org.lwjgl.LWJGLException;
-import org.lwjgl.LWJGLUtil;
-
 import static com.bulletphysics.demos.opengl.IGL.*;
 
 /**
@@ -117,9 +110,8 @@ public class BasicDemo extends DemoApplication {
 		//glutSwapBuffers();
 	}
 
-	@Override
 	public void initPhysics() {
-		setCameraDistance(30f);
+		setCameraDistance(50f);
 
 		// collision configuration contains default setup for memory, collision setup
 		collisionConfiguration = new DefaultCollisionConfiguration();
@@ -209,10 +201,10 @@ public class BasicDemo extends DemoApplication {
 						DefaultMotionState myMotionState = new DefaultMotionState(startTransform);
 						RigidBodyConstructionInfo rbInfo = new RigidBodyConstructionInfo(mass, myMotionState, colShape, localInertia);
 						RigidBody body = new RigidBody(rbInfo);
-						body.setActivationState(CollisionObject.ISLAND_SLEEPING);
+						body.setActivationState(RigidBody.ISLAND_SLEEPING);
 
 						dynamicsWorld.addRigidBody(body);
-						body.setActivationState(CollisionObject.ISLAND_SLEEPING);
+						body.setActivationState(RigidBody.ISLAND_SLEEPING);
 					}
 				}
 			}
@@ -222,40 +214,11 @@ public class BasicDemo extends DemoApplication {
 	}
 	
 	public static void main(String[] args) throws LWJGLException {
-		
-		File JGLLib = null;
-		
-		switch(LWJGLUtil.getPlatform())
-        {
-            case LWJGLUtil.PLATFORM_WINDOWS:
-            {
-                JGLLib = new File("./libs/windows");
-            }
-            break;
-
-            case LWJGLUtil.PLATFORM_LINUX:
-            {
-                JGLLib = new File("./libs/linux");
-            }
-            break;
-
-            case LWJGLUtil.PLATFORM_MACOSX:
-            {
-                JGLLib = new File("./libs/macosx");
-            }
-            break;
-        }
-
-        System.setProperty("org.lwjgl.librarypath", JGLLib.getAbsolutePath());
-		
-		
-		
 		BasicDemo ccdDemo = new BasicDemo(LWJGL.getGL());
 		ccdDemo.initPhysics();
 		ccdDemo.getDynamicsWorld().setDebugDrawer(new GLDebugDrawer(LWJGL.getGL()));
 
-		LWJGL.main(args, 800, 600, "Bullet Physics Demo", ccdDemo);
+		LWJGL.main(args, 800, 600, "Bullet Physics Demo. http://bullet.sf.net", ccdDemo);
 	}
-
 	
 }
