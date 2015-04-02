@@ -33,10 +33,10 @@ import com.bulletphysics.collision.shapes.CollisionShape;
 import com.bulletphysics.collision.shapes.CompoundShape;
 import com.bulletphysics.collision.shapes.StaticPlaneShape;
 import com.bulletphysics.collision.shapes.TriangleIndexVertexArray;
-import com.bulletphysics.demos.opengl.DemoApplication;
-import com.bulletphysics.demos.opengl.GLDebugDrawer;
-import com.bulletphysics.demos.opengl.IGL;
-import com.bulletphysics.demos.opengl.LWJGL;
+import ar.com.edu.it.itba.PF3.opengl.DemoApplication;
+import ar.com.edu.it.itba.PF3.opengl.GLDebugDrawer;
+import ar.com.edu.it.itba.PF3.opengl.IGL;
+import ar.com.edu.it.itba.PF3.opengl.LWJGL;
 import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
@@ -47,7 +47,7 @@ import com.bulletphysics.linearmath.Transform;
 import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
 import org.lwjgl.LWJGLException;
-import static com.bulletphysics.demos.opengl.IGL.*;
+import static ar.com.edu.it.itba.PF3.opengl.IGL.*;
 
 /**
  * 

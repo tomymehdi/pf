@@ -37,11 +37,11 @@ import com.bulletphysics.collision.shapes.CapsuleShape;
 import com.bulletphysics.collision.shapes.CollisionShape;
 import com.bulletphysics.collision.shapes.ConvexHullShape;
 import com.bulletphysics.collision.shapes.ConvexShape;
-import com.bulletphysics.demos.bsp.BspConverter;
-import com.bulletphysics.demos.opengl.DemoApplication;
-import com.bulletphysics.demos.opengl.GLDebugDrawer;
-import com.bulletphysics.demos.opengl.IGL;
-import com.bulletphysics.demos.opengl.LWJGL;
+import ar.com.edu.it.itba.PF3.bsp.BspConverter;
+import ar.com.edu.it.itba.PF3.opengl.DemoApplication;
+import ar.com.edu.it.itba.PF3.opengl.GLDebugDrawer;
+import ar.com.edu.it.itba.PF3.opengl.IGL;
+import ar.com.edu.it.itba.PF3.opengl.LWJGL;
 import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
 import com.bulletphysics.dynamics.character.KinematicCharacterController;
 import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
@@ -49,7 +49,7 @@ import com.bulletphysics.dynamics.constraintsolver.SequentialImpulseConstraintSo
 import com.bulletphysics.linearmath.Transform;
 import javax.vecmath.Vector3f;
 import org.lwjgl.input.Keyboard;
-import static com.bulletphysics.demos.opengl.IGL.*;
+import static ar.com.edu.it.itba.PF3.opengl.IGL.*;
 
 /**
  * 

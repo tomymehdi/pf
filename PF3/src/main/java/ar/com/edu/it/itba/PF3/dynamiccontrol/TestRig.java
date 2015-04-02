@@ -27,7 +27,7 @@ package ar.com.edu.it.itba.PF3.dynamiccontrol;
 import com.bulletphysics.BulletGlobals;
 import com.bulletphysics.collision.shapes.CapsuleShape;
 import com.bulletphysics.collision.shapes.CollisionShape;
-import com.bulletphysics.demos.genericjoint.RagDoll.BodyPart;
+import ar.com.edu.it.itba.PF3.genericjoint.RagDoll.BodyPart;
 import com.bulletphysics.dynamics.DynamicsWorld;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.RigidBodyConstructionInfo;

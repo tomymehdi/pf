@@ -26,7 +26,7 @@ package ar.com.edu.it.itba.PF3.concaveconvexcast;
 import com.bulletphysics.collision.dispatch.CollisionWorld;
 import com.bulletphysics.collision.dispatch.CollisionWorld.ClosestConvexResultCallback;
 import com.bulletphysics.collision.shapes.BoxShape;
-import com.bulletphysics.demos.opengl.IGL;
+import ar.com.edu.it.itba.PF3.opengl.IGL;
 import com.bulletphysics.linearmath.Clock;
 import com.bulletphysics.linearmath.QuaternionUtil;
 import com.bulletphysics.linearmath.Transform;
@@ -35,7 +35,7 @@ import com.bulletphysics.linearmath.VectorUtil;
 import cz.advel.stack.Stack;
 import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
-import static com.bulletphysics.demos.opengl.IGL.*;
+import static ar.com.edu.it.itba.PF3.opengl.IGL.*;
 
 /**
  * Scrolls back and forth over terrain.

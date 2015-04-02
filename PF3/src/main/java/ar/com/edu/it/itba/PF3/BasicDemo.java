@@ -33,10 +33,10 @@ import com.bulletphysics.collision.dispatch.CollisionObject;
 import com.bulletphysics.collision.dispatch.DefaultCollisionConfiguration;
 import com.bulletphysics.collision.shapes.BoxShape;
 import com.bulletphysics.collision.shapes.CollisionShape;
-import com.bulletphysics.demos.opengl.DemoApplication;
-import com.bulletphysics.demos.opengl.GLDebugDrawer;
-import com.bulletphysics.demos.opengl.IGL;
-import com.bulletphysics.demos.opengl.LWJGL;
+import ar.com.edu.it.itba.PF3.opengl.DemoApplication;
+import ar.com.edu.it.itba.PF3.opengl.GLDebugDrawer;
+import ar.com.edu.it.itba.PF3.opengl.IGL;
+import ar.com.edu.it.itba.PF3.opengl.LWJGL;
 import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.RigidBodyConstructionInfo;
@@ -50,7 +50,7 @@ import javax.vecmath.Vector3f;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.LWJGLUtil;
 
-import static com.bulletphysics.demos.opengl.IGL.*;
+import static ar.com.edu.it.itba.PF3.opengl.IGL.*;
 
 /**
  * BasicDemo is good starting point for learning the code base and porting.

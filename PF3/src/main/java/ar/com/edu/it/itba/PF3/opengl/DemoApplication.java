@@ -47,7 +47,7 @@ import javax.vecmath.Matrix3f;
 import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
 import org.lwjgl.input.Keyboard;
-import static com.bulletphysics.demos.opengl.IGL.*;
+import static ar.com.edu.it.itba.PF3.opengl.IGL.*;
 
 /**
  *

@@ -22,9 +22,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/jbullet-demos.jar"/>
 	<classpathentry kind="lib" path="libs/jinput.jar"/>
 	<classpathentry kind="lib" path="libs/lwjgl_util.jar"/>
 	<classpathentry kind="lib" path="libs/lwjgl.jar"/>
+	<classpathentry kind="lib" path="libs/jbullet-demos.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

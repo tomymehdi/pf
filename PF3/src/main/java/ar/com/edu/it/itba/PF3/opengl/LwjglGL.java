@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.Map;
-import com.bulletphysics.demos.opengl.FontRender.GLFont;
+import ar.com.edu.it.itba.PF3.opengl.FontRender.GLFont;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.Cylinder;

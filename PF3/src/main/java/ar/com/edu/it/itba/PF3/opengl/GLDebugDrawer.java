@@ -26,7 +26,7 @@ package ar.com.edu.it.itba.PF3.opengl;
 import com.bulletphysics.linearmath.DebugDrawModes;
 import com.bulletphysics.linearmath.IDebugDraw;
 import javax.vecmath.Vector3f;
-import static com.bulletphysics.demos.opengl.IGL.*;
+import static ar.com.edu.it.itba.PF3.opengl.IGL.*;
 
 /**
  *

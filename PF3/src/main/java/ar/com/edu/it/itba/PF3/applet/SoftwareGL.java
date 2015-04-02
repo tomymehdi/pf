@@ -25,7 +25,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import com.bulletphysics.demos.opengl.IGL;
+import ar.com.edu.it.itba.PF3.opengl.IGL;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.vecmath.Matrix4f;
