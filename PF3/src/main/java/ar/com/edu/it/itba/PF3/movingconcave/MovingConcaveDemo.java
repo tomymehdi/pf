@@ -23,6 +23,8 @@
 
 package ar.com.edu.it.itba.PF3.movingconcave;
 
+import java.io.File;
+
 import com.bulletphysics.collision.broadphase.BroadphaseInterface;
 import com.bulletphysics.collision.broadphase.DbvtBroadphase;
 import com.bulletphysics.collision.dispatch.CollisionDispatcher;
@@ -33,10 +35,12 @@ import com.bulletphysics.collision.shapes.CollisionShape;
 import com.bulletphysics.collision.shapes.CompoundShape;
 import com.bulletphysics.collision.shapes.StaticPlaneShape;
 import com.bulletphysics.collision.shapes.TriangleIndexVertexArray;
+
 import ar.com.edu.it.itba.PF3.opengl.DemoApplication;
 import ar.com.edu.it.itba.PF3.opengl.GLDebugDrawer;
 import ar.com.edu.it.itba.PF3.opengl.IGL;
 import ar.com.edu.it.itba.PF3.opengl.LWJGL;
+
 import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
@@ -44,9 +48,13 @@ import com.bulletphysics.dynamics.constraintsolver.SequentialImpulseConstraintSo
 import com.bulletphysics.extras.gimpact.GImpactCollisionAlgorithm;
 import com.bulletphysics.extras.gimpact.GImpactMeshShape;
 import com.bulletphysics.linearmath.Transform;
+
 import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
+
 import org.lwjgl.LWJGLException;
+import org.lwjgl.LWJGLUtil;
+
 import static ar.com.edu.it.itba.PF3.opengl.IGL.*;
 
 /**
@@ -229,6 +237,32 @@ public class MovingConcaveDemo extends DemoApplication {
 	}
 	
 	public static void main(String[] args) throws LWJGLException {
+		
+File JGLLib = null;
+		
+		switch(LWJGLUtil.getPlatform())
+        {
+            case LWJGLUtil.PLATFORM_WINDOWS:
+            {
+                JGLLib = new File("./libs/windows");
+            }
+            break;
+
+            case LWJGLUtil.PLATFORM_LINUX:
+            {
+                JGLLib = new File("./libs/linux");
+            }
+            break;
+
+            case LWJGLUtil.PLATFORM_MACOSX:
+            {
+                JGLLib = new File("./libs/macosx");
+            }
+            break;
+        }
+
+        System.setProperty("org.lwjgl.librarypath", JGLLib.getAbsolutePath());
+		
 		MovingConcaveDemo concaveDemo = new MovingConcaveDemo(LWJGL.getGL());
 		concaveDemo.initPhysics();
 		concaveDemo.getDynamicsWorld().setDebugDrawer(new GLDebugDrawer(LWJGL.getGL()));

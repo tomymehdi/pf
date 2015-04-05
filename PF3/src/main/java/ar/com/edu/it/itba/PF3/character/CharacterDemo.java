@@ -23,6 +23,8 @@
 
 package ar.com.edu.it.itba.PF3.character;
 
+import java.io.File;
+
 import com.bulletphysics.util.ObjectArrayList;
 import com.bulletphysics.collision.broadphase.AxisSweep3;
 import com.bulletphysics.collision.broadphase.BroadphaseInterface;
@@ -37,18 +39,24 @@ import com.bulletphysics.collision.shapes.CapsuleShape;
 import com.bulletphysics.collision.shapes.CollisionShape;
 import com.bulletphysics.collision.shapes.ConvexHullShape;
 import com.bulletphysics.collision.shapes.ConvexShape;
+
 import ar.com.edu.it.itba.PF3.bsp.BspConverter;
 import ar.com.edu.it.itba.PF3.opengl.DemoApplication;
 import ar.com.edu.it.itba.PF3.opengl.GLDebugDrawer;
 import ar.com.edu.it.itba.PF3.opengl.IGL;
 import ar.com.edu.it.itba.PF3.opengl.LWJGL;
+
 import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
 import com.bulletphysics.dynamics.character.KinematicCharacterController;
 import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
 import com.bulletphysics.dynamics.constraintsolver.SequentialImpulseConstraintSolver;
 import com.bulletphysics.linearmath.Transform;
+
 import javax.vecmath.Vector3f;
+
+import org.lwjgl.LWJGLUtil;
 import org.lwjgl.input.Keyboard;
+
 import static ar.com.edu.it.itba.PF3.opengl.IGL.*;
 
 /**
@@ -310,6 +318,32 @@ public class CharacterDemo extends DemoApplication {
 	}
 
 	public static void main(String[] args) throws Exception {
+		
+File JGLLib = null;
+		
+		switch(LWJGLUtil.getPlatform())
+        {
+            case LWJGLUtil.PLATFORM_WINDOWS:
+            {
+                JGLLib = new File("./libs/windows");
+            }
+            break;
+
+            case LWJGLUtil.PLATFORM_LINUX:
+            {
+                JGLLib = new File("./libs/linux");
+            }
+            break;
+
+            case LWJGLUtil.PLATFORM_MACOSX:
+            {
+                JGLLib = new File("./libs/macosx");
+            }
+            break;
+        }
+
+        System.setProperty("org.lwjgl.librarypath", JGLLib.getAbsolutePath());
+		
 		CharacterDemo demo = new CharacterDemo(LWJGL.getGL());
 		demo.initPhysics();
 		demo.getDynamicsWorld().setDebugDrawer(new GLDebugDrawer(LWJGL.getGL()));

@@ -32,11 +32,15 @@ import com.bulletphysics.collision.dispatch.CollisionDispatcher;
 import com.bulletphysics.collision.dispatch.CollisionObject;
 import com.bulletphysics.collision.dispatch.DefaultCollisionConfiguration;
 import com.bulletphysics.collision.shapes.BoxShape;
+import com.bulletphysics.collision.shapes.CapsuleShape;
 import com.bulletphysics.collision.shapes.CollisionShape;
+import com.bulletphysics.collision.shapes.CylinderShape;
+
 import ar.com.edu.it.itba.PF3.opengl.DemoApplication;
 import ar.com.edu.it.itba.PF3.opengl.GLDebugDrawer;
 import ar.com.edu.it.itba.PF3.opengl.IGL;
 import ar.com.edu.it.itba.PF3.opengl.LWJGL;
+
 import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.RigidBodyConstructionInfo;
@@ -141,14 +145,14 @@ public class BasicDemo extends DemoApplication {
 		dynamicsWorld.setGravity(new Vector3f(0f, -10f, 0f));
 
 		// create a few basic rigid bodies
-		CollisionShape groundShape = new BoxShape(new Vector3f(50f, 50f, 50f));
+		CollisionShape groundShape = new BoxShape(new Vector3f(50f, 1f, 50f));
 		//CollisionShape groundShape = new StaticPlaneShape(new Vector3f(0, 1, 0), 50);
 
 		collisionShapes.add(groundShape);
 
 		Transform groundTransform = new Transform();
 		groundTransform.setIdentity();
-		groundTransform.origin.set(0, -56, 0);
+		groundTransform.origin.set(0, 0, 0);
 
 		// We can also use DemoApplication::localCreateRigidBody, but for clarity it is provided here:
 		{
@@ -175,8 +179,10 @@ public class BasicDemo extends DemoApplication {
 			// create a few dynamic rigidbodies
 			// Re-using the same collision is better for memory usage and performance
 
-			CollisionShape colShape = new BoxShape(new Vector3f(1, 1, 1));
+			//CollisionShape colShape = new BoxShape(new Vector3f(1, 1, 1));
 			//CollisionShape colShape = new SphereShape(1f);
+			CollisionShape colShape = new CapsuleShape(3f, 9f);
+			//CollisionShape colShape = new CylinderShape(new Vector3f(1,1,1));
 			collisionShapes.add(colShape);
 
 			// Create Dynamic Objects
@@ -193,29 +199,16 @@ public class BasicDemo extends DemoApplication {
 				colShape.calculateLocalInertia(mass, localInertia);
 			}
 
-			float start_x = START_POS_X - ARRAY_SIZE_X / 2;
-			float start_y = START_POS_Y;
-			float start_z = START_POS_Z - ARRAY_SIZE_Z / 2;
+			startTransform.origin.set(0, 15, 0);
 
-			for (int k = 0; k < ARRAY_SIZE_Y; k++) {
-				for (int i = 0; i < ARRAY_SIZE_X; i++) {
-					for (int j = 0; j < ARRAY_SIZE_Z; j++) {
-						startTransform.origin.set(
-								2f * i + start_x,
-								10f + 2f * k + start_y,
-								2f * j + start_z);
+			// using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
+			DefaultMotionState myMotionState = new DefaultMotionState(startTransform);
+			RigidBodyConstructionInfo rbInfo = new RigidBodyConstructionInfo(mass, myMotionState, colShape, localInertia);
+			RigidBody body = new RigidBody(rbInfo);
+			body.setActivationState(CollisionObject.ISLAND_SLEEPING);
 
-						// using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
-						DefaultMotionState myMotionState = new DefaultMotionState(startTransform);
-						RigidBodyConstructionInfo rbInfo = new RigidBodyConstructionInfo(mass, myMotionState, colShape, localInertia);
-						RigidBody body = new RigidBody(rbInfo);
-						body.setActivationState(CollisionObject.ISLAND_SLEEPING);
-
-						dynamicsWorld.addRigidBody(body);
-						body.setActivationState(CollisionObject.ISLAND_SLEEPING);
-					}
-				}
-			}
+			dynamicsWorld.addRigidBody(body);
+			body.setActivationState(CollisionObject.ISLAND_SLEEPING);
 		}
 
 		clientResetScene();
