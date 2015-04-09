@@ -25,6 +25,7 @@ package ar.com.edu.it.itba.PF3;
 
 import java.io.File;
 
+import com.bulletphysics.BulletGlobals;
 import com.bulletphysics.util.ObjectArrayList;
 import com.bulletphysics.collision.broadphase.BroadphaseInterface;
 import com.bulletphysics.collision.broadphase.DbvtBroadphase;
@@ -36,6 +37,8 @@ import com.bulletphysics.collision.shapes.CapsuleShape;
 import com.bulletphysics.collision.shapes.CollisionShape;
 import com.bulletphysics.collision.shapes.CylinderShape;
 
+import ar.com.edu.it.itba.PF3.genericjoint.RagDoll.BodyPart;
+import ar.com.edu.it.itba.PF3.genericjoint.RagDoll.JointType;
 import ar.com.edu.it.itba.PF3.opengl.DemoApplication;
 import ar.com.edu.it.itba.PF3.opengl.GLDebugDrawer;
 import ar.com.edu.it.itba.PF3.opengl.IGL;
@@ -45,6 +48,7 @@ import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.RigidBodyConstructionInfo;
 import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
+import com.bulletphysics.dynamics.constraintsolver.Generic6DofConstraint;
 import com.bulletphysics.dynamics.constraintsolver.SequentialImpulseConstraintSolver;
 import com.bulletphysics.linearmath.DefaultMotionState;
 import com.bulletphysics.linearmath.Transform;
@@ -199,7 +203,7 @@ public class BasicDemo extends DemoApplication {
 				colShape.calculateLocalInertia(mass, localInertia);
 			}
 
-			startTransform.origin.set(0, 15, 0);
+			startTransform.origin.set(0, 20, 0);
 
 			// using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 			DefaultMotionState myMotionState = new DefaultMotionState(startTransform);
@@ -209,6 +213,53 @@ public class BasicDemo extends DemoApplication {
 
 			dynamicsWorld.addRigidBody(body);
 			body.setActivationState(CollisionObject.ISLAND_SLEEPING);
+			
+			CollisionShape colShape2 = new CapsuleShape(3f, 9f);
+			collisionShapes.add(colShape2);
+			
+			Transform startTransform2 = new Transform();
+			startTransform2.setIdentity();
+			float mass2 = 1f;
+			
+			boolean isDynamic2 = (mass2 != 0f);
+			
+			Vector3f localIntertia2 = new Vector3f(0, 0, 0);
+			if(isDynamic2) {
+				colShape2.calculateLocalInertia(mass2, localIntertia2);
+			}
+		
+			startTransform2.origin.set(5, 20, 0);
+			
+			DefaultMotionState myMotionState2 = new DefaultMotionState(startTransform2);
+			RigidBodyConstructionInfo rbInfo2 = new RigidBodyConstructionInfo(mass2, myMotionState2, colShape2, localIntertia2);
+			RigidBody body2 = new RigidBody(rbInfo2);
+			body2.setActivationState(CollisionObject.ISLAND_SLEEPING);
+			
+			dynamicsWorld.addRigidBody(body2);
+			body2.setActivationState(CollisionObject.ISLAND_SLEEPING);
+			
+			Transform localA = new Transform();
+			Transform localB = new Transform();
+			localA.setIdentity();
+			localB.setIdentity();
+
+			localA.origin.set(0f, 7.5f, 0f);
+			localB.origin.set(0f, -7.5f, 0f);
+			Generic6DofConstraint joint6DOF = new Generic6DofConstraint(
+					body, 
+					body2, 
+					localA, 
+					localB, 
+					true);
+			
+			joint6DOF.setLimit(0, 0, 0);
+			joint6DOF.setLimit(1, 0, 0);
+			joint6DOF.setLimit(2, 0, 0);
+			joint6DOF.setLimit(3, 0, 0);
+			joint6DOF.setLimit(4, 0, 0);
+			joint6DOF.setLimit(5, 0, 0);
+			
+			dynamicsWorld.addConstraint(joint6DOF, true);
 		}
 
 		clientResetScene();
